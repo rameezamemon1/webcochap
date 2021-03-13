@@ -1,0 +1,172 @@
+doctype html
+head
+  title
+    | Create a Form Dynamically with
+    | the JavaScript
+h1(style='color: green;')
+  | Gericht hinzufügen 
+p
+  | Click on the button 
+
+span 1. 
+button(onclick='add_ingredient()')
+  | add ingredient
+br
+
+span 2. 
+button(onclick='add_calinfo()')
+  | add Ernährungswerte
+br
+
+span 3. 
+button(onclick='add_step()')
+  | add schritt
+br 
+br
+
+datalist(id="category")
+  option Nudeln
+  option Frühstück
+  option Chicken-Beef
+  option Fisch
+  option Vegetarisch-Vegan
+
+script.
+
+
+  // Create a break line element
+  var br = document.createElement("br");
+  
+  // Create a form synamically
+  var form = document.createElement("form");
+  form.setAttribute("method", "post");
+
+  // create a submit button
+  var s = document.createElement("input");
+  s.setAttribute("type", "submit");
+  s.setAttribute("value", "Veroeffentlichen");
+  // Append the submit button to the form
+  form.appendChild(s);
+  form.appendChild(br.cloneNode());
+  form.appendChild(br.cloneNode());
+
+  // Create an input element for Full Name
+  var FN = document.createElement("input");
+  FN.setAttribute("type", "text");
+  FN.setAttribute("name", "title");
+  FN.setAttribute("placeholder", "Name des Gerichts");
+
+  var b = document.createElement("input");
+  b.setAttribute("list", "category");
+  b.setAttribute("name", "category");
+  
+
+
+  var a = document.createElement("textarea");
+  a.setAttribute("type", "text");
+  a.setAttribute("name", "desc");
+  a.setAttribute("placeholder", "Beschreibung des Gerichts ca 5 Sätze");
+
+  
+
+
+  // Append the full name input to the form
+  form.appendChild(FN);
+  // Inserting a line break
+  form.appendChild(br.cloneNode());
+  form.appendChild(br.cloneNode());
+  
+  var span = document.createElement('span')
+  span.innerHTML = "Kategorie auswählen: ";
+  form.appendChild(span);
+
+  form.appendChild(b);
+
+  form.appendChild(br.cloneNode());
+  form.appendChild(br.cloneNode());
+  
+  form.appendChild(a);
+  
+  // Inserting a line break
+  form.appendChild(br.cloneNode());
+  form.appendChild(br.cloneNode());
+  // Append the DOB to the form
+
+   
+  // Inserting a line break
+  form.appendChild(br.cloneNode());
+
+  document.getElementsByTagName("body")[0].appendChild(form);
+  
+  var step_counter = 1; 
+
+  function add_step() {
+
+    // Create an input element for date of birth
+    var DOB = document.createElement("input");
+    DOB.setAttribute("type", "text");
+    tmp = "step_".concat(step_counter)
+    
+    DOB.setAttribute("name", tmp);
+    DOB.setAttribute("placeholder", tmp);
+    // Append the full name input to the form
+    // Inserting a line break
+    form.appendChild(br.cloneNode());
+    // Append the DOB to the form
+    form.appendChild(DOB);
+    form.appendChild(br.cloneNode());
+    
+    document.getElementsByTagName("body")[0].appendChild(form);
+    
+    step_counter++;
+  }
+
+  function add_ingredient() {
+
+    var ing = document.createElement("input");
+    ing.setAttribute("type", "text");
+    ing.setAttribute("name", "ingredient");
+    ing.setAttribute("placeholder", "ingredient");
+
+    form.appendChild(ing);
+    form.appendChild(br.cloneNode());
+    form.appendChild(br.cloneNode());
+  }
+
+  let add_calinfo_counter = 0;
+  function add_calinfo() {
+
+    if(add_calinfo_counter <= 3){
+      let placeholder_text;
+      switch(add_calinfo_counter) {
+        case 0:
+          form.appendChild(br.cloneNode());
+          placeholder_text = "Energie in kcal"
+          break;
+        case 1:
+          placeholder_text = "Kohlenhydrate"
+          break;
+        case 2:
+          placeholder_text = "Eiweiß in g"
+          break;
+        case 3:
+          placeholder_text = "Fett in g"
+          break;
+      }
+      var ing = document.createElement("input");
+      ing.setAttribute("type", "text");
+      ing.setAttribute("name", "ernahrungsinfo");
+      ing.setAttribute("placeholder", placeholder_text);
+
+      form.appendChild(ing);
+      form.appendChild(br.cloneNode());
+      form.appendChild(br.cloneNode());
+
+      add_calinfo_counter++;
+    } else {
+      alert("Max ernährungsinfos reached");
+    }
+
+    
+  }
+

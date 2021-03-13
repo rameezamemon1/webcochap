@@ -1,0 +1,71 @@
+extends layout 
+
+block content
+    center
+        #wrappping
+            center
+            p.lead(style='font-size: 7vh;') #{gericht.title}
+            // Table
+            center
+            #wripwrap(style='width:90%;')
+                div(style='margin-left: 3vw; margin-right: 1vw; text-align: left;')
+                p(style="font-family: 'Courier New', Courier, monospace;")
+                    |#{gericht.desc}
+                table.table.table-hover.table-fixed
+                    // Table head
+                    thead
+                        tr
+                        th Ingredients
+                        th
+                            #servingsnumber(style='display:inline;') 1
+                            |  Portion
+                            button#butt.btn.btn-outline-secondary(type='button' style='min-width: 1vw; min-height:  1vw; margin-left: 2vw;' onclick='addServing()') +
+                    // Table head
+                    // Table body
+                    tbody
+                        - var n = 0;
+                         each val in gericht.ingredient 
+                            - n++;
+                        - for( var y = 0; y < n; y++)
+                            tr
+                            td #{gericht.ingredient[y]}
+                            td#thone #{gericht.menge[y]}
+                            tr
+                        
+                        
+
+            center
+            a#butt.btn.btn-outline-primary(target='_blank' href='https://shop.rewe.de/recipes/mapping/65098c80d8ebce7868f4c1ce3aba9bcaaf9201a083235ca4d8fc9ed324044937?ecid=cop_partner_nn_chefkoch_shoppingbutton_nn_nn_nn_nn&serviceTypes=delivery&source=im' type='button' style='margin-bottom: 2vh;') Get all ingredients delivered
+            table.table.table-hover.table-fixed(style='width: 80%;')
+                // Table head
+                thead
+                    tr
+                    th Ern&auml;hrungsinfo
+                    th / Portion
+                    tr
+                // Table head
+                // Table body
+                tbody
+                    - var values = ["Energie in kcal", "Kohlenhydrate", "Eiweiß", "Fett"];
+
+                    - for ( var y = 0; y < gericht.ernahrungsinfo; y++)
+
+                    - var counter = 0;
+                    each val in gericht.ernahrungsinfo
+                        tr
+                        td #{values[counter]}
+                        td #{val}
+                        tr
+                        - counter++;
+                    
+                // Table body
+                // Table
+            center
+            a(href='spaghetticarbonara_recipe.html')
+                button#butt.btn.btn-outline-secondary(type='button' style='width: 80%; height: 8vh; margin-top: 2vh;margin-bottom: 5vh;') Start Cooking Now
+        // Optional JavaScript
+        // jQuery first, then Popper.js, then Bootstrap JS
+        script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
+        script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
+        script(src='custom_script_1.js')

@@ -1,0 +1,6 @@
+Valdidation
+    ingredients min 2
+    ernährungsinfo min 2
+Ajax Post mit Überprüfung
+
+Verficication

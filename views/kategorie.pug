@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    #wrappping(style='margin:0 auto; margin-bottom: 15px;')
+        h1 #{kategorie}
+        each post in posts
+            if post.category == kategorie
+                a(href='/gerichte/' + post.id) #{post.title}
+                p Zutaten: #{post.ingredient}
+
+                p einzelne Zutaten
+                each ing in post.ingredient
+                    p #{ing}
